@@ -54,12 +54,35 @@ public class PlayerMovement : MonoBehaviour
     }
     void handleMovement()
     {
+        //ORIGINAL
+        /*
         Vector3 move = new Vector3(movement.x, 0, movement.y);
         controller.Move(move * Time.deltaTime * playerSpeed);
 
         playerVelocity.y += gravityValue * Time.deltaTime; //Not needed
         controller.Move(playerVelocity * Time.deltaTime);
+        */
 
+
+        // Get Player Input
+        float playerVerticalInput = movement.y;
+        float playerHorizontalInput = movement.x;
+
+        // Get Camera Normalized Direction Vectors
+        Vector3 forward = Camera.main.transform.forward;
+        Vector3 right = Camera.main.transform.right;
+        forward.y = 0;
+        right.y = 0;
+        forward = forward.normalized;
+        right = right.normalized;
+
+        // Create direction-relative-input vectors
+        Vector3 forwardRelativeVerticalInput = playerVerticalInput * forward;
+        Vector3 rightRelativeHorizontalInput = playerHorizontalInput * right;
+
+        // Create and apply camera relative movement
+        Vector3 cameraRelativeMovement = forwardRelativeVerticalInput + rightRelativeHorizontalInput;
+        controller.Move(cameraRelativeMovement * Time.deltaTime * playerSpeed);
     }
 
     void handleRotation()
@@ -101,4 +124,9 @@ public class PlayerMovement : MonoBehaviour
     {
         isGamepad = pi.currentControlScheme.Equals("Gamepad");
     }
+
+    //Tutorials
+    //https://www.youtube.com/watch?v=koRgU2dC5Po
+    //https://www.youtube.com/watch?v=7kGCrq1cJew
+
 }
