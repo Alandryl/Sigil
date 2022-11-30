@@ -22,6 +22,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Fire",
+                    "type": "Button",
+                    "id": "50eeed7a-cfc9-481f-bee6-79a9d4dfc4b7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -93,6 +102,17 @@
                 },
                 {
                     "name": "",
+                    "id": "fd06ad9c-3d05-46f5-972e-e8f262c7639d",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "addf3b91-6b79-495c-8398-e92be38c9573",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
@@ -104,12 +124,23 @@
                 },
                 {
                     "name": "",
-                    "id": "fd06ad9c-3d05-46f5-972e-e8f262c7639d",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
+                    "id": "6881358d-2ff7-44ad-888c-7ba33751a893",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Aim",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1c1760b0-7ae7-4bf4-aa83-3c97e3efde3f",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

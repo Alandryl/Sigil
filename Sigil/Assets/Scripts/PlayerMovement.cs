@@ -44,14 +44,15 @@ public class PlayerMovement : MonoBehaviour
         handleInput();
         handleMovement();
         handleRotation();
-
     }
 
     void handleInput()
     {
         movement = playerControls.Controls.Movement.ReadValue<Vector2>();
         aim = playerControls.Controls.Aim.ReadValue<Vector2>();
+        playerControls.Controls.Fire.performed += context => fire();
     }
+
     void handleMovement()
     {
         //ORIGINAL
@@ -120,10 +121,17 @@ public class PlayerMovement : MonoBehaviour
         transform.LookAt(heightCorrectedPoint);
     }
 
+    void fire()
+    {
+        Debug.Log("FIRE!");
+    }
+
+
     public void OnDeviceChange (PlayerInput pi)
     {
         isGamepad = pi.currentControlScheme.Equals("Gamepad");
     }
+
 
     //Tutorials
     //https://www.youtube.com/watch?v=koRgU2dC5Po
