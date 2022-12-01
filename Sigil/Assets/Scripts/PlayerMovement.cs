@@ -123,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
 
     void fire()
     {
-        Debug.Log("FIRE!");
+        //Debug.Log("FIRE!");
     }
 
 
