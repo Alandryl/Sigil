@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 41570722383689810}
   - component: {fileID: 4480185850995845662}
   - component: {fileID: 4436812523559737861}
+  - component: {fileID: 1865921032978185209}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -127,13 +128,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -172,6 +173,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 4480185850995845662}
   m_maskType: 0
+--- !u!114 &1865921032978185209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435487719337747842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47e42d28cda46b34cb7f8804e6db4c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3031350695880890770
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,6 +198,7 @@ GameObject:
   - component: {fileID: 5623653549441356080}
   - component: {fileID: 6973836637089451968}
   - component: {fileID: 4044975938720938822}
+  - component: {fileID: 612348617807285340}
   m_Layer: 5
   m_Name: DamagePopup
   m_TagString: Untagged
@@ -291,3 +305,15 @@ MonoBehaviour:
   lifetime: 1
   minDist: 2
   maxDist: 3
+--- !u!114 &612348617807285340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3031350695880890770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e166aec459b19d4a98cd9f1c54d2106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

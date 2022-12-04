@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spellToCast: {fileID: 11400000, guid: fa82135135b164942be411197c397324, type: 2}
+  spellCollider: {fileID: 7278498152805069751}
 --- !u!1 &3869116875309144853
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,10 +8,10 @@ public class Spell : MonoBehaviour
 {
     public SpellScriptableObject spellToCast;
 
-    private SphereCollider spellCollider;
+    [SerializeField] private SphereCollider spellCollider;
     private Rigidbody spellRigidbody;
 
-    private void Start()
+    private void Awake()
     {
         spellCollider.GetComponent<SphereCollider>();
         spellCollider.isTrigger = true;

@@ -24,6 +24,8 @@ public class DamagePopup : MonoBehaviour
         //targetPos = iniPos + (Quaternion.Euler(0, 0, direction) * new Vector3(dist, dist, 0f));
         targetPos = iniPos + (Quaternion.Euler(0, 0, direction) * new Vector3(0f, 2, 0f));
         transform.localScale = Vector3.zero;
+
+        transform.position = iniPos;
     }
 
     void Update()
@@ -45,8 +47,12 @@ public class DamagePopup : MonoBehaviour
         }
 
 
-        transform.position = Vector3.Lerp(iniPos, targetPos, Mathf.Sin(timer / lifetime));
-        transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, Mathf.Sin(timer / lifetime));
+        //transform.position = Vector3.Lerp(iniPos, targetPos, Mathf.Sin(timer / lifetime));
+        //transform.position += transform.TransformDirection(Vector3.up * 0.02f);
+        //transform.localPosition += transform.TransformDirection(Vector3.up * 0.02f);
+        transform.localPosition += new Vector3(0f, 1 * 0.02f, 0f);
+        
+        transform.localScale = Vector3.Lerp(Vector3.one / 2, Vector3.one, Mathf.Sin(timer / lifetime));
 
     }
 
