@@ -6,7 +6,8 @@ using UnityEngine;
 public class SpellScriptableObject : ScriptableObject
 {
 
-    public float damageAmount = 1f;
+    public int damageMinAmount = 1;
+    public int damageMaxAmount = 2;
     public float lifetime = 10f;
     public float speed = 10f;
     public float spellRadius = 0.5f;
