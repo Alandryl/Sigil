@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2095975972434743919}
   - component: {fileID: 4247616017421493925}
   - component: {fileID: 5829837317137385700}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: P_ColumnStone_2x2_01
   m_TagString: Environment
   m_Icon: {fileID: 0}
