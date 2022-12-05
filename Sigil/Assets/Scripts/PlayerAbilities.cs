@@ -47,8 +47,12 @@ public class PlayerAbilities : MonoBehaviour
         {
             currentCastTimer += Time.deltaTime;
 
-            if (currentCastTimer > timeBetweenCasts) castingMagic = false;
+            if (currentCastTimer > spellToCast.spellToCast.cooldown)
+            {
+                castingMagic = false;
+            }
         }
+
     }
 
     void CastSpell()

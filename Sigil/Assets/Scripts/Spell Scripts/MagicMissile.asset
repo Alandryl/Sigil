@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageMinAmount: 1
   damageMaxAmount: 3
+  passThroughAmount: 3
+  spellEffectRadius: 0
+  cooldown: 0.3
+  speed: 12
+  spellColliderRadius: 0.5
   lifetime: 2
-  speed: 10
-  spellRadius: 0.5

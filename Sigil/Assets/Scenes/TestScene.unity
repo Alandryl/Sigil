@@ -10910,6 +10910,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 9082478078611389891, guid: 5aa3d914ac5988848b6ed6751d0cde62,
+        type: 3}
+      propertyPath: spellToCast
+      value: 
+      objectReference: {fileID: 6727134456132243698, guid: af2ba5fa419c42b49ae680ebfb298649,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

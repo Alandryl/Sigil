@@ -11,14 +11,18 @@ public class Spell : MonoBehaviour
     [SerializeField] private SphereCollider spellCollider;
     private Rigidbody spellRigidbody;
 
+    private int passThroughAmount;
+
     private void Awake()
     {
         spellCollider.GetComponent<SphereCollider>();
         spellCollider.isTrigger = true;
-        spellCollider.radius = spellToCast.spellRadius;
+        spellCollider.radius = spellToCast.spellColliderRadius;
 
         spellRigidbody = GetComponent<Rigidbody>();
         spellRigidbody.isKinematic = true;
+
+        passThroughAmount = spellToCast.passThroughAmount;
 
         Destroy(this.gameObject, spellToCast.lifetime);
     }
@@ -35,13 +39,47 @@ public class Spell : MonoBehaviour
     {
         if (other.gameObject.tag == "Environment")
         {
-            Destroy(this.gameObject);
+            DestroySpell();
         }
         if (other.gameObject.tag == "Enemy")
         {
             HealthComponent enemyHealth = other.GetComponent<HealthComponent>();
-            enemyHealth.TakeDamage(Random.Range(spellToCast.damageMinAmount, spellToCast.damageMaxAmount + 1));
-            Destroy(this.gameObject);
+            passThroughAmount -= 1;
+
+            if (spellToCast.spellEffectRadius == 0)
+            {
+                enemyHealth.TakeDamage(Random.Range(spellToCast.damageMinAmount, spellToCast.damageMaxAmount + 1));
+            }
+            else
+            {
+                AreaDamageEnemies(transform.position, spellToCast.spellEffectRadius);
+            }
+
+            if (passThroughAmount <= 0)
+            {
+                DestroySpell();
+            }
         }
+    }
+
+    void AreaDamageEnemies(Vector3 location, float radius)
+    {
+        {
+            Collider[] objectsInRange = Physics.OverlapSphere(location, radius);
+            foreach (Collider hit in objectsInRange)
+            {
+                if (hit.tag == "Enemy")
+                {
+                    HealthComponent enemyHealth = hit.GetComponent<HealthComponent>();
+                    enemyHealth.TakeDamage(Random.Range(spellToCast.damageMinAmount, spellToCast.damageMaxAmount + 1));
+                    DestroySpell();
+                }
+            }
+        }
+    }
+
+    private void DestroySpell()
+    {
+        Destroy(this.gameObject);
     }
 }
