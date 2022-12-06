@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerAbilities : MonoBehaviour
 {
+    [SerializeField] private PlayerStats playerStats;
     [SerializeField] private Spell spellToCast;
 
     [SerializeField] private float timeBetweenCasts = 0.25f;
@@ -45,7 +46,7 @@ public class PlayerAbilities : MonoBehaviour
 
         if (castingMagic)
         {
-            currentCastTimer += Time.deltaTime;
+            currentCastTimer += Time.deltaTime * playerStats.castSpeedMultiplier;
 
             if (currentCastTimer > spellToCast.spellToCast.cooldown)
             {
@@ -57,7 +58,10 @@ public class PlayerAbilities : MonoBehaviour
 
     void CastSpell()
     {
-        Instantiate(spellToCast, castPoint.position, castPoint.rotation);
+        GameObject spell = Instantiate(spellToCast, castPoint.position, castPoint.rotation).gameObject;
+        spell.GetComponent<Spell>().playerStats = playerStats;
+
+        //Instantiate(spellToCast, castPoint.position, castPoint.rotation);
     }
 
 }

@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Spell : MonoBehaviour
 {
+    [HideInInspector] public PlayerStats playerStats;
+
     public SpellScriptableObject spellToCast;
 
     [SerializeField] private SphereCollider spellCollider;
@@ -39,6 +41,10 @@ public class Spell : MonoBehaviour
     {
         if (other.gameObject.tag == "Environment")
         {
+            if (spellToCast.spellEffectRadius > 0)
+            {
+                AreaDamageEnemies(transform.position, spellToCast.spellEffectRadius * playerStats.spellEffectRadiusMultiplier);
+            }
             DestroySpell();
         }
         if (other.gameObject.tag == "Enemy")
@@ -48,11 +54,13 @@ public class Spell : MonoBehaviour
 
             if (spellToCast.spellEffectRadius == 0)
             {
-                enemyHealth.TakeDamage(Random.Range(spellToCast.damageMinAmount, spellToCast.damageMaxAmount + 1));
+                //enemyHealth.TakeDamage(Random.Range(spellToCast.damageMinAmount, spellToCast.damageMaxAmount + 1));
+                float damageTaken = Random.Range(spellToCast.damageMinAmount * playerStats.damageMultiplier, spellToCast.damageMaxAmount * playerStats.damageMultiplier);
+                enemyHealth.TakeDamage(Mathf.RoundToInt(damageTaken));
             }
             else
             {
-                AreaDamageEnemies(transform.position, spellToCast.spellEffectRadius);
+                AreaDamageEnemies(transform.position, spellToCast.spellEffectRadius * playerStats.spellEffectRadiusMultiplier);
             }
 
             if (passThroughAmount <= 0)
@@ -71,7 +79,11 @@ public class Spell : MonoBehaviour
                 if (hit.tag == "Enemy")
                 {
                     HealthComponent enemyHealth = hit.GetComponent<HealthComponent>();
-                    enemyHealth.TakeDamage(Random.Range(spellToCast.damageMinAmount, spellToCast.damageMaxAmount + 1));
+                    //enemyHealth.TakeDamage(Random.Range(spellToCast.damageMinAmount, spellToCast.damageMaxAmount + 1));
+
+                    float damageTaken = Random.Range(spellToCast.damageMinAmount * playerStats.damageMultiplier, spellToCast.damageMaxAmount * playerStats.damageMultiplier);
+                    enemyHealth.TakeDamage(Mathf.RoundToInt(damageTaken));
+
                     DestroySpell();
                 }
             }
