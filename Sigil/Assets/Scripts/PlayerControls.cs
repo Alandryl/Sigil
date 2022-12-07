@@ -53,6 +53,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FireGamepad"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""5d34e73f-0a3c-4146-b21f-88a1d9c6fbbb"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -165,6 +174,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fb796693-3d47-43bf-a9f3-961b10232c75"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""FireGamepad"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -204,6 +224,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Controls_Movement = m_Controls.FindAction("Movement", throwIfNotFound: true);
         m_Controls_Aim = m_Controls.FindAction("Aim", throwIfNotFound: true);
         m_Controls_Fire = m_Controls.FindAction("Fire", throwIfNotFound: true);
+        m_Controls_FireGamepad = m_Controls.FindAction("FireGamepad", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -266,6 +287,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Controls_Movement;
     private readonly InputAction m_Controls_Aim;
     private readonly InputAction m_Controls_Fire;
+    private readonly InputAction m_Controls_FireGamepad;
     public struct ControlsActions
     {
         private @PlayerControls m_Wrapper;
@@ -273,6 +295,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_Controls_Movement;
         public InputAction @Aim => m_Wrapper.m_Controls_Aim;
         public InputAction @Fire => m_Wrapper.m_Controls_Fire;
+        public InputAction @FireGamepad => m_Wrapper.m_Controls_FireGamepad;
         public InputActionMap Get() { return m_Wrapper.m_Controls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -291,6 +314,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Fire.started -= m_Wrapper.m_ControlsActionsCallbackInterface.OnFire;
                 @Fire.performed -= m_Wrapper.m_ControlsActionsCallbackInterface.OnFire;
                 @Fire.canceled -= m_Wrapper.m_ControlsActionsCallbackInterface.OnFire;
+                @FireGamepad.started -= m_Wrapper.m_ControlsActionsCallbackInterface.OnFireGamepad;
+                @FireGamepad.performed -= m_Wrapper.m_ControlsActionsCallbackInterface.OnFireGamepad;
+                @FireGamepad.canceled -= m_Wrapper.m_ControlsActionsCallbackInterface.OnFireGamepad;
             }
             m_Wrapper.m_ControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -304,6 +330,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Fire.started += instance.OnFire;
                 @Fire.performed += instance.OnFire;
                 @Fire.canceled += instance.OnFire;
+                @FireGamepad.started += instance.OnFireGamepad;
+                @FireGamepad.performed += instance.OnFireGamepad;
+                @FireGamepad.canceled += instance.OnFireGamepad;
             }
         }
     }
@@ -331,5 +360,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
+        void OnFireGamepad(InputAction.CallbackContext context);
     }
 }

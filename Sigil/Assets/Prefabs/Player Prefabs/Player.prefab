@@ -562,6 +562,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 9082478078611389891}
+        m_TargetAssemblyTypeName: PlayerAbilities, Assembly-CSharp
+        m_MethodName: OnDeviceChange
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 7263750075577842628}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.PlayerInput,
+            Unity.InputSystem
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls: []
@@ -575,6 +588,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 50eeed7a-cfc9-481f-bee6-79a9d4dfc4b7
     m_ActionName: Controls/Fire[/Mouse/leftButton,/XInputControllerWindows/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5d34e73f-0a3c-4146-b21f-88a1d9c6fbbb
+    m_ActionName: Controls/Fire[/Mouse/leftButton,/XInputControllerWindows/rightStick]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Controls
@@ -614,6 +631,7 @@ MonoBehaviour:
     type: 3}
   timeBetweenCasts: 0.25
   castPoint: {fileID: 3489095084806432893}
+  isGamepad: 0
 --- !u!114 &7888422850377046427
 MonoBehaviour:
   m_ObjectHideFlags: 0

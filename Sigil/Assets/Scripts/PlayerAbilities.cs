@@ -17,6 +17,7 @@ public class PlayerAbilities : MonoBehaviour
 
     private bool castingMagic = false;
 
+    [SerializeField] private bool isGamepad;
 
     void Awake()
     {
@@ -35,7 +36,19 @@ public class PlayerAbilities : MonoBehaviour
 
     void Update()
     {
-        bool isSpellCastHeldDown = playerControls.Controls.Fire.ReadValue<float>() > 0.1;
+        bool isSpellCastHeldDown;
+        if (!isGamepad)
+        {
+            isSpellCastHeldDown = playerControls.Controls.Fire.ReadValue<float>() > 0.1;
+        }
+        else
+        {
+            Vector2 aim = playerControls.Controls.FireGamepad.ReadValue<Vector2>();
+
+            isSpellCastHeldDown = Mathf.Abs(aim.x) > 0.1f || Mathf.Abs(aim.y) > 0.1f;
+
+        }
+
 
         if (!castingMagic && isSpellCastHeldDown)
         {
@@ -64,4 +77,8 @@ public class PlayerAbilities : MonoBehaviour
         //Instantiate(spellToCast, castPoint.position, castPoint.rotation);
     }
 
+    public void OnDeviceChange(PlayerInput pi)
+    {
+        isGamepad = pi.currentControlScheme.Equals("Gamepad");
+    }
 }
