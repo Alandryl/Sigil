@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf34838c9a292c4e93aa5e161bed140, type: 3}
   m_Name: Fireball
   m_EditorClassIdentifier: 
+  spellType: 0
   damageMinAmount: 3
   damageMaxAmount: 5
   passThroughAmount: 1
-  spellEffectRadius: 3
+  spellEffectRadius: 2
   cooldown: 1
   speed: 8
   spellColliderRadius: 0.5

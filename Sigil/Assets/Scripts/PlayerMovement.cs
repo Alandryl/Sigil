@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float playerSpeed = 5f;
+    [SerializeField] private PlayerStats playerStats;
+
     [SerializeField] private float gravityValue = -9.81f;
     [SerializeField] private float controllerDeadzone = 0.1f;
     [SerializeField] private float gamepadRotateSmoothing = 1000f;
@@ -83,17 +84,42 @@ public class PlayerMovement : MonoBehaviour
 
         // Create and apply camera relative movement
         Vector3 cameraRelativeMovement = forwardRelativeVerticalInput + rightRelativeHorizontalInput;
-        controller.Move(cameraRelativeMovement * Time.deltaTime * playerSpeed);
+        controller.Move(cameraRelativeMovement * Time.deltaTime * playerStats.baseMoveSpeed * playerStats.moveSpeedMultiplier);
     }
 
     void handleRotation()
     {
         if (isGamepad)
         {
+
+
+            // Get Player Input
+            float playerVerticalInput = aim.y;
+            float playerHorizontalInput = aim.x;
+
+            // Get Camera Normalized Direction Vectors
+            Vector3 forward = Camera.main.transform.forward;
+            Vector3 right = Camera.main.transform.right;
+            forward.y = 0;
+            right.y = 0;
+            forward = forward.normalized;
+            right = right.normalized;
+
+            // Create direction-relative-input vectors
+            Vector3 forwardRelativeVerticalInput = playerVerticalInput * forward;
+            Vector3 rightRelativeHorizontalInput = playerHorizontalInput * right;
+
+
+
+
+
+
+
             //Rotate player
             if (Mathf.Abs(aim.x) > controllerDeadzone || Mathf.Abs(aim.y) > controllerDeadzone)
             {
-                Vector3 playerDirection = Vector3.right * aim.x + Vector3.forward * aim.y;
+                //Vector3 playerDirection = Vector3.right * aim.x + Vector3.forward * aim.y;
+                Vector3 playerDirection = forwardRelativeVerticalInput + rightRelativeHorizontalInput;
                 if (playerDirection.sqrMagnitude > 0.0f)
                 {
                     Quaternion newRotation = Quaternion.LookRotation(playerDirection, Vector3.up);

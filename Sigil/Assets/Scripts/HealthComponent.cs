@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealthComponent : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 5;
+    public int maxHealth = 5;
     private int currentHealth;
     public GameObject damageText;
     public GameObject damageTextPopupPoint;

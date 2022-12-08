@@ -24,6 +24,11 @@ public class EnemyAI : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
+    [Header("Attacks")]
+
+    public GameObject attackPivotPoint;
+    public GameObject projectile;
+
     private void Awake()
     {
         player = GameObject.Find("Player").transform;
@@ -35,13 +40,17 @@ public class EnemyAI : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (!playerInSightRange)
+        if (!playerInSightRange && !playerInAttackRange)
         {
             Patroling();
         }
         if (playerInSightRange)
         {
             ChasePlayer();
+        }
+        if (playerInAttackRange && playerInSightRange && !alreadyAttacked)
+        {
+            AttackPlayer();
         }
     }
 
@@ -84,9 +93,11 @@ public class EnemyAI : MonoBehaviour
 
     private void AttackPlayer()
     {
-        agent.SetDestination(transform.position);
+        //agent.SetDestination(transform.position);
 
         transform.LookAt(player);
+
+        Instantiate(projectile, attackPivotPoint.transform.position, attackPivotPoint.transform.rotation);
 
         if (!alreadyAttacked)
         {

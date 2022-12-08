@@ -609,7 +609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed776e9518bf5174aad5fb263bb6d0d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 5
+  playerStats: {fileID: 7888422850377046427}
   gravityValue: -9.81
   controllerDeadzone: 0.1
   gamepadRotateSmoothing: 1000
@@ -645,7 +645,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
-  moveSpeed: 5
+  currentHealth: 0
+  baseMoveSpeed: 5
+  moveSpeedMultiplier: 1
   damageMultiplier: 1
   castSpeedMultiplier: 1
   spellEffectRadiusMultiplier: 1
