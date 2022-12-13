@@ -42,9 +42,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        handleInput();
-        handleMovement();
-        handleRotation();
+        if (!playerStats.isDead)
+        {
+            handleInput();
+            handleMovement();
+            handleRotation();
+        }
     }
 
     void handleInput()

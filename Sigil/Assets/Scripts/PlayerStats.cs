@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+    [HideInInspector] public bool isDead;
+
     public int maxHealth = 10;
     public int currentHealth;
     public float baseMoveSpeed = 5;
@@ -23,7 +25,10 @@ public class PlayerStats : MonoBehaviour
     }
     void Update()
     {
-        
+        if (currentHealth <= 0)
+        {
+            isDead = true;
+        }
     }
 
     public void TakeDamage(int damageToApply)

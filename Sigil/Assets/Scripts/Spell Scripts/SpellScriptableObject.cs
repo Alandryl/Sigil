@@ -21,6 +21,12 @@ public class SpellScriptableObject : ScriptableObject
     public float spellColliderRadius = 0.5f;
     public float lifetime = 10f;
 
+    [Header("Not Yet Implemented")]
+
+    public int bounceAmount = 0;
+
+
+
 
     void Start()
     {
